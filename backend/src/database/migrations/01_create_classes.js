@@ -4,7 +4,7 @@ exports.up = async function(knex){
         table.string('subject').notNullable();
         table.decimal('cost').notNullable();
 
-        table.integer('user_id')
+        table.integer('uses_id')
             .notNullable()
             .references('id')
             .inTable('users')

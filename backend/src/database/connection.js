@@ -9,4 +9,4 @@ const db = knex({
     useNullAsDefault: true
 })
 
-module.exports = db
+export default db
