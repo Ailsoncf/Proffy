@@ -1,3 +1,5 @@
+const Knex = require("knex");
+
 exports.up = async function(knex){
     return knex.schema.createTable('connections', table => {
         table.increments('id').primary();
@@ -10,7 +12,7 @@ exports.up = async function(knex){
             .onDelete('CASCADE')
 
         table.timestamp('created_at')
-            .defaultTo('now()')
+            .defaultTo(knex.raw('CURRENT_TIMESTAMP'))
             .notNullable()
       })
 }
