@@ -32,7 +32,7 @@
     margin-top: 0.8rem;
   }
   
-  .btn-container {
+  .buttons-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -40,7 +40,7 @@
     margin: 3.2rem 0;
   }
   
-  .btn-container a {
+  .buttons-container a {
     width: 90%;
     height: 9.4rem;
     border-radius: 0.8rem;
@@ -57,28 +57,28 @@
     cursor: pointer;
   }
   
-  .btn-container a:first-child {
+  .buttons-container a:first-child {
     margin-bottom: 1.6rem;
   }
   
-  .btn-container a img {
+  .buttons-container a img {
     width: 4rem;
     margin-right: 1.6rem;
   }
   
-  .btn-container a.study {
+  .buttons-container a.study {
     background: var(--color-primary-lighter);
   }
   
-  .btn-container a.give-classes {
+  .buttons-container a.give-classes {
     background: var(--color-secundary);
   }
   
-  .btn-container a.study:hover {
+  .buttons-container a.study:hover {
     background: var(--color-primary-light);
   }
   
-  .btn-container a.give-classes:hover {
+  .buttons-container a.give-classes:hover {
     background: var(--color-secundary-dark);
   }
   
@@ -95,15 +95,15 @@
   }
   
   @media (min-width: 650px) {
-    .btn-container {
+    .buttons-container {
       flex-direction: row;
     }
   
-    .btn-container a:first-child {
+    .buttons-container a:first-child {
       margin: 0 1.6rem 0 0;
     }
   
-    .btn-container a {
+    .buttons-container a {
       width: 30rem;
     }
   }
@@ -143,12 +143,12 @@
       justify-self: end;
     }
   
-    .btn-container {
+    .buttons-container {
       grid-area: buttons;
       justify-content: flex-start;
     }
   
-    .btn-container a {
+    .buttons-container a {
       font-size: 2.4rem;
     }
   
