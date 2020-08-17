@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import backIcon from "../../assets/images/icons/back.svg";
 import logo from "../../assets/images/logo.svg";
 
+import "./styles.css";
+
 function PageHeader(props) {
   return (
     <header className="page-header">
