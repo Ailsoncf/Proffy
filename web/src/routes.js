@@ -3,12 +3,14 @@ import { BrowserRouter, Route } from "react-router-dom";
 
 import Landing from "./pages/Landing";
 import TeacherForm from "./pages/TeacherForm";
+import TeacherList from "./pages/TeacherList";
 
 function Routes() {
   return (
     <BrowserRouter>
       <Route path="/" exact component={Landing} />
-      <Route path="give-classes" exact component={TeacherForm} />
+      <Route path="/give-classes" component={TeacherForm} />
+      <Route path="/Study" component={TeacherList} />
     </BrowserRouter>
   );
 }
