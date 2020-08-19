@@ -18,6 +18,7 @@ function PageHeader(props) {
       </div>
       <div className="header-content">
         <strong>{props.title}</strong>
+        {props.description ? <p>{props.description}</p> : null}
         {props.children}
       </div>
     </header>
