@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react'
 
-import "./styles.css";
+import './styles.css'
 
 function Select({ label, name, options, ...rest }) {
   return (
@@ -15,11 +15,11 @@ function Select({ label, name, options, ...rest }) {
             <option key={option.value} value={option.value}>
               {option.label}
             </option>
-          );
+          )
         })}
       </select>
     </div>
-  );
+  )
 }
 
-export default Select;
+export default Select
