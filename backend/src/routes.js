@@ -1,11 +1,18 @@
-const {Router} = require('express')
-const db = require('./database/connection')
+const { Router } = require('express')
+
 const ClassesController = require('./controllers/ClassesController')
 const ConnectionsController = require('./controllers/ConnectionsController')
+const AuthController = require('./controllers/AuthController')
+const UsersController = require('./controllers/UsersCotroller')
+const auth = require('./middlewares/auth')
 
 const routes = Router()
 
-routes.post('/classes', ClassesController.create)
+routes.post('/signup', AuthController.signUp)
+routes.get('/signin', AuthController.signIn)
+routes.get('/users', UsersController.indexAllUsers)
+routes.get('/user', auth, UsersController.showUser)
+routes.post('/classes', auth, ClassesController.create)
 routes.get('/classes', ClassesController.index)
 routes.post('/connections', ConnectionsController.create)
 routes.get('/connections', ConnectionsController.index)
