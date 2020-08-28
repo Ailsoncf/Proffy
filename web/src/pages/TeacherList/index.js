@@ -25,6 +25,7 @@ function TeacherList() {
         time,
       },
     })
+    console.log(response.data)
     setTeachers(response.data)
   }
 
@@ -85,7 +86,7 @@ function TeacherList() {
 
       <main>
         {teachers.map((teacher) => {
-          return <TeacherItem teacher={teacher} />
+          return <TeacherItem key={teacher.id} teacher={teacher} />
         })}
       </main>
     </div>

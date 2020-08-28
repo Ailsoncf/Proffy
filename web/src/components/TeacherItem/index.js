@@ -1,10 +1,18 @@
 import React from 'react'
 
+import api from '../../services/api'
+
 import whatsappIcon from '../../assets/images/icons/whatsapp.svg'
 
 import './styles.css'
 
 function TeacherItem({ teacher }) {
+  function createNewconnection() {
+    api.post('connections', {
+      user_id: teacher.id,
+    })
+  }
+
   return (
     <article className="teacher-item">
       <header>
@@ -21,10 +29,15 @@ function TeacherItem({ teacher }) {
           Preço/hora
           <strong>R$ {teacher.cost}</strong>
         </p>
-        <button type="button">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={createNewconnection}
+          href={`http://wa.me/${teacher.whatsapp}`}
+        >
           <img src={whatsappIcon} alt="Whatsapp" />
           Entrar em contato.
-        </button>
+        </a>
       </footer>
     </article>
   )
