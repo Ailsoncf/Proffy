@@ -26,33 +26,29 @@ module.exports = {
       })
       .where('classes.subject', '=', filters.subject)
       .join('users', 'classes.user_id', '=', 'users.id')
-      .select(['classes.*', 'users.*'])
+      .select([
+        'classes.*',
+        'users.name',
+        'users.email',
+        'users.whatsapp',
+        'users.avatar',
+      ])
 
     return response.send(classes)
   },
 
   async create(request, response) {
-    const {
-      name,
-      avatar,
-      whatsapp,
-      bio,
-      subject,
-      cost,
-      schedule,
-    } = request.body
+    const { whatsapp, bio, subject, cost, schedule } = request.body
 
     const trx = await db.transaction()
 
     try {
-      const insertedUsersIds = await trx('users').insert({
-        name,
-        avatar,
+      const insertedUsersIds = await trx('users').update({
         whatsapp,
         bio,
       })
 
-      const user_id = insertedUsersIds[0]
+      const user_id = request.userID
 
       const insertedClassesIds = await trx('classes').insert({
         subject,
@@ -75,12 +71,12 @@ module.exports = {
 
       await trx.commit()
 
-      return response.status(201).json()
+      return response.status(201).json(classSchedule)
     } catch (err) {
       await trx.rollback()
 
       return response.status(400).json({
-        error: 'Unexpected error while creating a new class',
+        error: `Unexpected error while creating a new class, ${err}`,
       })
     }
   },

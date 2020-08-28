@@ -4,8 +4,6 @@ const { secret } = require('../config/auth.json')
 module.exports = (request, response, next) => {
   const authHeader = request.headers.authorization
 
-  console.log(authHeader)
-
   if (!authHeader)
     return response.status(481).send({ error: 'No token provided' })
 
