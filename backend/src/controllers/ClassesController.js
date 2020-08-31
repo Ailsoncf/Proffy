@@ -43,7 +43,7 @@ module.exports = {
     const trx = await db.transaction()
 
     try {
-      const insertedUsersIds = await trx('users').update({
+      await trx('users').update({
         whatsapp,
         bio,
       })
@@ -71,13 +71,40 @@ module.exports = {
 
       await trx.commit()
 
-      return response.status(201).json(classSchedule)
+      return response.status(201).json({ classSchedule, user_id })
     } catch (err) {
       await trx.rollback()
 
       return response.status(400).json({
         error: `Unexpected error while creating a new class, ${err}`,
       })
+    }
+  },
+
+  async showUserClasses(request, response) {
+    try {
+      const user_id = request.userID
+
+      const classes = await db('classes')
+        .where({ user_id })
+        .select('id', 'subject', 'cost')
+        .first()
+
+      return response.json(classSchedule)
+    } catch (err) {
+      return response.json({ error: 'Not possible to show classes' })
+    }
+  },
+
+  async delete(request, response) {
+    try {
+      const { id } = request.params
+
+      await db('class_schedule').where({ id }).del()
+
+      return response.json({ message: 'Deleted Class' })
+    } catch (err) {
+      return response.json({ error: `Delete Class error, ${err}` })
     }
   },
 }

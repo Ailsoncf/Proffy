@@ -14,6 +14,8 @@ routes.get('/users', UsersController.indexAllUsers)
 routes.get('/user', auth, UsersController.showUser)
 routes.post('/classes', auth, ClassesController.create)
 routes.get('/classes', ClassesController.index)
+routes.get('/userclasses', auth, ClassesController.showUserClasses)
+routes.delete('/classes/:id', auth, ClassesController.delete)
 routes.post('/connections', ConnectionsController.create)
 routes.get('/connections', ConnectionsController.index)
 
