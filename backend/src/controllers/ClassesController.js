@@ -88,9 +88,10 @@ module.exports = {
       const classes = await db('classes')
         .where({ user_id })
         .select('id', 'subject', 'cost')
-        .first()
 
-      return response.json(classSchedule)
+      const cs = await db('class_schedule')
+
+      return response.json({ classes, cs })
     } catch (err) {
       return response.json({ error: 'Not possible to show classes' })
     }
@@ -100,7 +101,9 @@ module.exports = {
     try {
       const { id } = request.params
 
-      await db('class_schedule').where({ id }).del()
+      await db('class_schedule').where('class_id', '=', id).del()
+
+      await db('classes').where({ id }).del()
 
       return response.json({ message: 'Deleted Class' })
     } catch (err) {
