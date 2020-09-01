@@ -18,6 +18,9 @@ routes.post('/classes', auth, ClassesController.create)
 routes.get('/classes', ClassesController.index)
 routes.get('/userclasses', auth, ClassesController.showUserClasses)
 routes.delete('/classes/:id', auth, ClassesController.delete)
+routes.post('/recover_pass', AuthController.passRecover)
+routes.post('/reset_pass', AuthController.passReset)
+
 routes.post('/connections', ConnectionsController.create)
 
 routes.get('/connections', ConnectionsController.index)
